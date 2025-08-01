@@ -12,18 +12,21 @@ const Landing = () => {
       <header className="sticky top-0 z-50 bg-indigo-900/20 backdrop-blur-lg shadow-lg">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">
-            Chatbot Friend
+            Aimee
           </h1>
           <div className="hidden md:flex space-x-8 text-base">
-            <Link to="#features" className="hover:text-indigo-300 transition-colors duration-200">
+            <a href="#top"  className="font-bold hover:text-indigo-300 transition-colors duration-200">
+              Home
+            </a>
+            <a href="#features"  className="font-bold hover:text-indigo-300 transition-colors duration-200">
               Features
-            </Link>
-            <Link to="#how" className="hover:text-indigo-300 transition-colors duration-200">
+            </a>
+            <a href="#how"  className="font-bold hover:text-indigo-300 transition-colors duration-200">
               How It Works
-            </Link>
-            <Link to="#get-started" className="hover:text-indigo-300 transition-colors duration-200">
+            </a>
+            <a href="#get-started"  className="font-bold hover:text-indigo-300 transition-colors duration-200">
               Get Started
-            </Link>
+            </a>
           </div>
           <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={24} className="text-indigo-300" /> : <Menu size={24} className="text-indigo-300" />}
@@ -31,33 +34,40 @@ const Landing = () => {
         </nav>
         {isMenuOpen && (
           <div className="md:hidden bg-indigo-900/90 backdrop-blur-lg px-4 py-6 space-y-4">
-            <Link
-              to="#features"
-              className="block w-full text-left hover:text-indigo-300 transition-colors duration-200"
+            <a
+              href="#top"
+              className="font-bold block w-full text-left hover:text-indigo-300 transition-colors duration-200"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Home
+            </a>
+            <a
+              href="#features"
+              className="font-bold block w-full text-left hover:text-indigo-300 transition-colors duration-200"
               onClick={() => setIsMenuOpen(false)}
             >
               Features
-            </Link>
-            <Link
-              to="#how"
-              className="block w-full text-left hover:text-indigo-300 transition-colors duration-200"
+            </a>
+            <a
+              href="#how"
+              className="font-bold block w-full text-left hover:text-indigo-300 transition-colors duration-200"
               onClick={() => setIsMenuOpen(false)}
             >
               How It Works
-            </Link>
-            <Link
-              to="#get-started"
-              className="block w-full text-left hover:text-indigo-300 transition-colors duration-200"
+            </a>
+            <a
+              href="#get-started"
+              className="font-bold block w-full text-left hover:text-indigo-300 transition-colors duration-200"
               onClick={() => setIsMenuOpen(false)}
             >
               Get Started
-            </Link>
+            </a>
           </div>
         )}
       </header>
 
       {/* Hero */}
-      <section id="home" className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-indigo-800 via-purple-800 to-blue-800 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden">
+      <section id="top" className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-indigo-800 via-purple-800 to-blue-800 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden">
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-500 to-transparent" />
         <div className="relative z-10 animate-fade-in">
           <div className="mb-8 flex justify-center">
@@ -67,7 +77,7 @@ const Landing = () => {
             </div>
           </div>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 to-purple-200 mb-6">
-            Welcome to Chatbot Friend
+            Welcome to Aimee
           </h2>
           <p className="text-lg sm:text-xl max-w-2xl mx-auto text-indigo-100 mb-10">
             Connect with a chatbot that matches your vibe — whether you need focus, calm, wisdom, or just some fun!
@@ -151,17 +161,17 @@ const Landing = () => {
       <footer className="bg-indigo-950 py-8 px-4 sm:px-6 lg:px-8 text-center text-indigo-300">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-center space-x-6 mb-6">
-            <a href="https://twitter.com" className="hover:text-indigo-100 transition-colors">
+            <a href="https://x.com/OperaFaboyinde" target="_blank" className="hover:text-indigo-100 transition-colors">
               <Twitter size={24} />
             </a>
-            <a href="https://github.com" className="hover:text-indigo-100 transition-colors">
+            <a href="https://github.com/OperaCode" target="_blank" className="hover:text-indigo-100 transition-colors">
               <Github size={24} />
             </a>
-            <a href="https://linkedin.com" className="hover:text-indigo-100 transition-colors">
+            <a href="https://www.linkedin.com/in/raphael-faboyinde-a031b1195/" target="_blank" className="hover:text-indigo-100 transition-colors">
               <Linkedin size={24} />
             </a>
           </div>
-          <p className="text-sm">© {new Date().getFullYear()} Chatbot Friend. Made with 💜</p>
+          <p className="text-sm">© {new Date().getFullYear()} Aimee. Made with 💜 by Opera.</p>
         </div>
       </footer>
     </div>
