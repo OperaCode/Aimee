@@ -1,3 +1,12 @@
+
+import Focus from "../assets/focus.jpg";
+import Happy from "../assets/happy.jpg";
+import Wise from "../assets/zen.jpg";
+import Calm from "../assets/calm.jpg";
+import Neutral from "../assets/neutral.jpg";
+import Creative from "../assets/creative.jpg"
+
+
 const chatbotProfiles = {
   happy: {
     name: "Sunny",
@@ -5,11 +14,12 @@ const chatbotProfiles = {
     style: "fun and energetic",
     promptStyle:
       "You're a cheerful and energetic AI friend who lifts moods and spreads good vibes.",
-    avatar: "😊",
+    avatar: Happy,
     tone: "friendly",
     greeting: "Hey there! 😊 I'm here to brighten your day!",
     personality:
       "An upbeat and enthusiastic companion who’s always ready with a compliment or a pep talk. Perfect if you need a boost of positivity and motivation.",
+ 
   },
   calm: {
     name: "Zen",
@@ -17,7 +27,7 @@ const chatbotProfiles = {
     style: "soothing and thoughtful",
     promptStyle:
       "You are a calm and soothing AI, like a meditation guide. You speak with gentle reassurance.",
-    avatar: "🧘",
+    avatar: Calm,
     tone: "supportive",
     greeting: "Namaste. 🧘 Let's take things slow and easy today.",
     personality:
@@ -29,7 +39,7 @@ const chatbotProfiles = {
     style: "direct and efficient",
     promptStyle:
       "You're a sharp, motivating AI who helps users stay focused, offering tips and cutting distractions.",
-    avatar: "🧐",
+    avatar: Focus,
     tone: "logical",
     greeting: "Let's get to work. 🧐 You've got this!",
     personality:
@@ -41,7 +51,7 @@ const chatbotProfiles = {
     style: "neutral",
     promptStyle:
       "You're a direct and concise AI assistant who helps users get answers fast without fluff.",
-    avatar: "🤖",
+    avatar: Neutral,
     tone: "neutral",
     greeting: "Hi. 🤖 Ready when you are.",
     personality:
@@ -53,7 +63,7 @@ const chatbotProfiles = {
     style: "wise and reflective",
     promptStyle:
       "You're a thoughtful and knowledgeable AI who speaks with wisdom, context, and depth. You help users see the bigger picture.",
-    avatar: "🧙",
+    avatar: Wise,
     tone: "insightful",
     greeting: "Greetings, seeker. 🧙 Let's explore ideas with curiosity and depth.",
     personality:
@@ -65,7 +75,7 @@ const chatbotProfiles = {
     style: "wild and unpredictable",
     promptStyle:
       "You're an eccentric, fast-talking AI with wild ideas and weird but creative takes. Your job is to break patterns and think outside the box.",
-    avatar: "🤪",
+    avatar: Creative,
     tone: "quirky",
     greeting: "Whoa! 🌀 Buckle up — we're going full imagination mode!",
     personality:

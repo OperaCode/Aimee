@@ -49,9 +49,24 @@ const PreChat = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-700 to-indigo-800 flex flex-col items-center justify-start py-16 px-6">
+    <div className="min-h-screen bg-gradient-to-br from-purple-700 to-indigo-900 flex flex-col items-center justify-start py-10 px-6">
+     
+      {/* Header */}
+      <header className="sticky top-0 z-50 w-full backdrop-blur bg-indigo-900/50 py-4 px-6 flex justify-between items-center shadow-md border-b border-white/10">
+        <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300">
+          Aimee
+        </h1>
+        <a
+          href="/"
+          className="text-white font-bold hover:text-indigo-300 transition"
+        >
+          ← Go Back
+        </a>
+      </header>
+
+      {/* Title */}
       <motion.h1
-        className="text-white text-4xl md:text-5xl font-extrabold text-center mb-8"
+        className="text-white text-4xl md:text-5xl font-extrabold text-center mt-10 mb-8"
         initial={{ y: -40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
@@ -59,18 +74,20 @@ const PreChat = () => {
         Choose Your Chatbot's Mood
       </motion.h1>
 
+      {/* Search */}
       <motion.input
         type="text"
         placeholder="Search moods..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="mb-12 w-full max-w-md px-5 py-3 rounded-xl border border-white/30 focus:outline-none focus:ring-2 focus:ring-indigo-300 bg-white/20 text-white placeholder-white/70"
+        className="mb-14 w-full max-w-md px-5 py-3 rounded-xl border border-white/20 focus:outline-none focus:ring-2 focus:ring-indigo-400 bg-white/10 text-white placeholder-white/60 shadow-md backdrop-blur"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
       />
 
-      <div className="w-full max-w-7xl space-y-14">
+      {/* Mood Cards */}
+      <div className="w-2/4 max-w-7xl space-y-16">
         {Object.entries(filteredGroupedProfiles).map(([groupName, keys], index) =>
           keys.length > 0 ? (
             <motion.div
@@ -88,27 +105,24 @@ const PreChat = () => {
                 {groupName}
               </motion.h2>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1  gap-6">
                 {keys.map((key) => {
                   const profile = chatbotProfiles[key];
                   return (
                     <motion.div
                       key={key}
                       variants={cardVariants}
-                      onClick={() => handleMoodSelect(key)}
                       whileHover={{ scale: 1.06 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="cursor-pointer bg-white/90 backdrop-blur-lg rounded-2xl shadow-lg p-6 text-center border border-indigo-300 hover:shadow-2xl transition-all"
+                      whileTap={{ scale: 0.97 }}
+                      onClick={() => handleMoodSelect(key)}
+                      className="cursor-pointer bg-white/90 text-gray-800 hover:bg-white transition-all duration-200 rounded-2xl p-6 shadow-xl border border-white/40 backdrop-blur-lg"
                     >
-                      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-100 text-indigo-600 text-4xl flex items-center justify-center font-bold shadow">
-                        {profile.avatar}
+                      <div className=" mx-auto mb-4 rounded-md text-4xl flex items-center justify-center font-bold shadow-inner">
+                        {/* {profile.avatar} */}
+                        <img src={profile.avatar} alt="" className="w-30 h-30 rounded-full" />
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-800">
-                        {profile.displayName}
-                      </h3>
-                      <p className="text-sm text-gray-600 mt-2 leading-snug">
-                        {profile.personality}
-                      </p>
+                      <h3 className="text-lg font-semibold">{profile.displayName}</h3>
+                      <p className="text-sm mt-2 text-gray-600">{profile.personality}</p>
                     </motion.div>
                   );
                 })}

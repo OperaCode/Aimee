@@ -37,7 +37,7 @@ const Home = () => {
       const replyMsg = { role: "assistant", content: botReply };
       setMessages((prev) => [...prev, replyMsg]);
     } catch (err) {
-      alert("❌ Failed to get response.");
+      alert("Failed to get response.");
     } finally {
       setLoading(false);
     }
@@ -59,7 +59,20 @@ const Home = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-indigo-950 to-black text-white">
-      {/* Header */}
+     
+ {/* Header */}
+      <header className="sticky top-0 z-50 w-full backdrop-blur bg-indigo-900/50 py-4 px-6 flex justify-between items-center shadow-md border-b border-white/10">
+        <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300">
+          Aimee
+        </h1>
+        <a
+          href="/pre-chat"
+          className="text-white font-bold hover:text-indigo-300 transition"
+        >
+          ← Go Back
+        </a>
+      </header>
+
       <header className="px-4 py-5 border-b border-indigo-900 backdrop-blur-lg shadow">
         <div className="flex flex-col items-center text-center">
           <h1 className="text-3xl font-extrabold tracking-tight">💬 ChatBot Friend</h1>
@@ -70,7 +83,8 @@ const Home = () => {
                 loading ? "animate-bounce" : ""
               }`}
             >
-              {currentBot.avatar}
+              {/* {currentBot.avatar} */}
+              <img src={currentBot.avatar} alt="" className="w-20 h-20 rounded-full" />
             </div>
             <div>
               <p className="text-sm text-gray-300">{currentBot.displayName}</p>

@@ -8,6 +8,7 @@ const Landing = () => {
 
   return (
     <div className="text-white font-sans bg-gray-900">
+      
       {/* Header */}
       <header className="sticky top-0 z-50 bg-indigo-900/20 backdrop-blur-lg shadow-lg">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
