@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { getBotReply } from "../hooks/chatbotConfig";
 import chatbotProfiles from "../hooks/chatbotProfile";
 import MoodSelector from "../components/MoodSelector";
+import { p } from "framer-motion/client";
 
 const Home = () => {
   const [mood, setMood] = useState("");
@@ -58,97 +59,84 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-indigo-950 to-black text-white">
-     
- {/* Header */}
-      <header className="sticky top-0 z-50 w-full backdrop-blur bg-indigo-900/50 py-4 px-6 flex justify-between items-center shadow-md border-b border-white/10">
-        <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300">
-          Aimee
-        </h1>
-        <a
-          href="/pre-chat"
-          className="text-white font-bold hover:text-indigo-300 transition"
-        >
-          ← Go Back
-        </a>
-      </header>
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-900 via-indigo-950 to-black text-white">
 
-      <header className="px-4 py-5 border-b border-indigo-900 backdrop-blur-lg shadow">
-        <div className="flex flex-col items-center text-center">
-          <h1 className="text-3xl font-extrabold tracking-tight">💬 ChatBot Friend</h1>
-          <div className="mt-3 flex items-center gap-4">
-            <div
-              title={currentBot.personality}
-              className={`text-5xl transition-transform duration-300 ${
-                loading ? "animate-bounce" : ""
-              }`}
+      {/* Top Header */}
+      <header className="sticky top-0 z-40 w-full backdrop-blur bg-indigo-900/50 border-b border-indigo-700 shadow-sm px-6 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          {/* <img src={currentBot.avatar} alt="Bot Avatar" className="w-12 h-12 rounded-full border-2 border-indigo-400 shadow-md" /> */}
+          <p className=" text-4xl rounded-full border-2 border-indigo-400 shadow-md">{currentBot.avatar}</p>
+          <div>
+            <h2 className="text-xl font-bold text-indigo-100">{currentBot.displayName}</h2>
+            <select
+              value={mood}
+              onChange={(e) => handleMoodSelect(e.target.value)}
+              className="mt-1 text-sm bg-indigo-800 px-2 py-1 rounded-md border border-indigo-600 focus:outline-none"
             >
-              {/* {currentBot.avatar} */}
-              <img src={currentBot.avatar} alt="" className="w-20 h-20 rounded-full" />
-            </div>
-            <div>
-              <p className="text-sm text-gray-300">{currentBot.displayName}</p>
-              <select
-                value={mood}
-                onChange={(e) => handleMoodSelect(e.target.value)}
-                className="mt-1 px-3 py-1 rounded-md bg-indigo-900 text-sm text-white border border-indigo-700 focus:outline-none focus:ring focus:ring-indigo-500"
-              >
-                {Object.entries(chatbotProfiles).map(([key, bot]) => (
-                  <option key={key} value={key}>
-                    {bot.displayName}
-                  </option>
-                ))}
-              </select>
-            </div>
+              {Object.entries(chatbotProfiles).map(([key, bot]) => (
+                <option key={key} value={key}>
+                  {bot.displayName}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
+        <a href="/pre-chat" className="text-indigo-300 hover:underline font-medium text-sm">← Go Back</a>
       </header>
 
-      {/* Chat area */}
-      <main className="flex-1 overflow-y-auto px-4 py-6 space-y-4">
+      {/* Chat History */}
+      <main className="flex-1 px-4 py-6 overflow-y-auto space-y-4">
         {messages.map((msg, index) => (
           <div
             key={index}
-            className={`flex flex-col max-w-[80%] ${
-              msg.role === "user" ? "ml-auto items-end" : "mr-auto items-start"
-            }`}
+            className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
           >
-            <span className="text-xs mb-1 text-indigo-300">
-              {msg.role === "user" ? "You" : currentBot.displayName}
-            </span>
-            <div
-              className={`p-4 rounded-2xl text-sm shadow-md max-w-full backdrop-blur-sm ${
-                msg.role === "user"
-                  ? "bg-indigo-600 text-white"
-                  : "bg-white/10 border border-indigo-700 text-white"
-              }`}
-            >
-              {msg.content}
+            <div className="relative max-w-[80%] sm:max-w-[70%] md:max-w-[60%]">
+              {msg.role !== "user" && (
+                // <img
+                //   src={currentBot.avatar}
+                //   alt="bot avatar"
+                //   className="absolute -left-10 top-1 w-8 h-8 rounded-full border border-indigo-500 shadow-md hidden sm:block"
+                // />
+                <p> {currentBot.avatar}</p>
+              )}
+              <div
+                className={`p-4 rounded-2xl shadow-md text-sm whitespace-pre-wrap ${
+                  msg.role === "user"
+                    ? "bg-indigo-600 text-white rounded-br-none"
+                    : "bg-white/10 border border-indigo-700 text-white rounded-bl-none"
+                }`}
+              >
+                <span className="block mb-1 text-xs text-indigo-300 font-medium">
+                  {msg.role === "user" ? "You" : currentBot.displayName}
+                </span>
+                {msg.content}
+              </div>
             </div>
           </div>
         ))}
 
         {loading && (
-          <div className="flex items-center gap-2 text-sm text-indigo-300 italic animate-pulse">
-            <span>{currentBot.avatar}</span>
+          <div className="text-sm italic text-indigo-300 animate-pulse flex items-center gap-2">
+            <img src={currentBot.avatar} className="w-6 h-6 rounded-full" />
             {currentBot.displayName} is typing...
           </div>
         )}
         <div ref={chatEndRef} />
       </main>
 
-      {/* Footer input */}
-      <footer className="p-4 border-t border-indigo-800 bg-black/70 backdrop-blur-md flex gap-3">
+      {/* Chat Input */}
+      <footer className="p-4 border-t border-indigo-800 bg-black/70 backdrop-blur-md flex items-center gap-3">
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+          placeholder="Type a message..."
           className="flex-1 p-3 rounded-xl bg-gray-900 border border-indigo-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
-          placeholder="Type your message..."
         />
         <button
           onClick={sendMessage}
-          className="bg-green-600 px-5 py-2 rounded-xl hover:bg-green-700 transition-all"
+          className="bg-green-600 hover:bg-green-700 px-5 py-2 rounded-xl font-semibold transition"
         >
           Send
         </button>
